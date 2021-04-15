@@ -1,0 +1,31 @@
+﻿<Window x:Class="ServiceDostavkiZakazov.DoljnostWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ServiceDostavkiZakazov"
+        mc:Ignorable="d"
+        Title="DoljnostWindow" Height="274.468" Width="471.532" Loaded="Window_Loaded">
+
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Control.FontFamily" Value="Arial" />
+            <Setter Property="Control.Background" Value="WhiteSmoke" />
+            <Setter Property="Control.Foreground" Value="Black" />
+            <Setter Property="Control.FontSize" Value="14"/>
+            <EventSetter Event="TextBox.GotFocus" Handler="SelectText" />
+        </Style>
+    </Window.Resources>
+
+    <Grid x:Name="grid">
+        <DataGrid x:Name="Data" HorizontalAlignment="Left" Height="212" Margin="0,10,0,0" VerticalAlignment="Top" Width="290" SelectedCellsChanged="Data_SelectedCellsChanged"/>
+        <Button x:Name="add" Content="Добавить" HorizontalAlignment="Left" Margin="307,88,0,0" VerticalAlignment="Top" Width="130" Click="add_Click"/>
+        <Button x:Name="edit" Content="Изменить" HorizontalAlignment="Left" Margin="307,124,0,0" VerticalAlignment="Top" Width="130" Click="edit_Click"/>
+        <Button x:Name="delete" Content="Удалить" HorizontalAlignment="Left" Margin="307,160,0,0" VerticalAlignment="Top" Width="130" Click="delete_Click"/>
+        <TextBox x:Name="dolj" HorizontalAlignment="Left" Height="23" Margin="307,26,0,0" TextWrapping="Wrap" Text="Название" VerticalAlignment="Top" Width="130"/>
+        <TextBox x:Name="oklad" HorizontalAlignment="Left" Height="23" Margin="307,54,0,0" TextWrapping="Wrap" Text="Оклад" VerticalAlignment="Top" Width="130"/>
+        <Button x:Name="back" Content="Назад" 
+                HorizontalAlignment="Left" Margin="307,202,0,0" VerticalAlignment="Top" Width="130" Click="back_Click"/>
+
+    </Grid>
+</Window>
