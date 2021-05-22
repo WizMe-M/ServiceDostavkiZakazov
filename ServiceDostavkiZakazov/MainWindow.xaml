@@ -1,20 +1,71 @@
-﻿<Window x:Class="ServiceDostavkiZakazov.MainWindow"
+﻿<Window x:Name="Window" x:Class="ServiceDostavkiZakazov.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ServiceDostavkiZakazov"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <DataGrid x:Name="Data" HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="564"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="640,363,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="562,363,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="717,363,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="633,33,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="633,61,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="633,89,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" Margin="633,281,0,0" VerticalAlignment="Top" Width="120"/>
+        Title="База данных сотрудников" 
+        Height="600" Width="1000" ResizeMode="NoResize" Cursor="Arrow" Loaded="Window_Loaded">
 
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Control.FontFamily" Value="Arial" />
+            <Setter Property="Control.Background" Value="WhiteSmoke" />
+            <Setter Property="Control.Foreground" Value="Black" />
+            <Setter Property="Control.FontSize" Value="14"/>
+            <EventSetter Event="TextBox.GotFocus" Handler="SelectText" />
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <DataGrid x:Name="Data" SelectedCellsChanged="Data_SelectedCellsChanged"
+                  HorizontalAlignment="Left" Height="551" VerticalAlignment="Top" Width="719" Margin="0,10,0,0"/>
+        <GroupBox Header="Данные пользователя" FontSize="18" Margin="725,10,10,244">
+            <Grid x:Name="grid">
+                <TextBox x:Name="nameTB" Text="Имя" 
+                 HorizontalAlignment="Left" Height="23" Margin="3,8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="117"/>
+                <TextBox x:Name="surnameTB" Text="Фамилия" 
+                 HorizontalAlignment="Left" Height="23" Margin="3,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="117"/>
+                <TextBox x:Name="middlenameTB" Text="Отчество"
+                 HorizontalAlignment="Left" Height="23" Margin="3,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="117"/>
+                <TextBox x:Name="seriaTB" Text="Серия" 
+                 HorizontalAlignment="Left" Height="23" Margin="125,8,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="119"/>
+                <TextBox x:Name="nomerTB" Text="Номер" 
+                 HorizontalAlignment="Left" Height="23" Margin="125,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119"/>
+                <TextBox x:Name="pochtaTB" Text="Почта" 
+                 HorizontalAlignment="Left" Height="23" Margin="3,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="117"/>
+                <TextBox x:Name="phoneTB" Text="Телефон" 
+                 HorizontalAlignment="Left" Height="23" Margin="125,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119"/>
+                <TextBox x:Name="gorodTB" Text="Город" 
+                 HorizontalAlignment="Left" Height="23" Margin="3,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241"/>
+                <TextBox x:Name="ulitsaTB" Text="Улица" 
+                 HorizontalAlignment="Left" Height="23" Margin="3,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241"/>
+                <TextBox x:Name="domTB" Text="Дом" 
+                 HorizontalAlignment="Left" Height="23" Margin="3,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="241"/>
+                <ComboBox x:Name="doljnostCB" HorizontalAlignment="Left" Margin="3,246,0,0"  
+                VerticalAlignment="Top" Width="241"/>
+            </Grid>
+        </GroupBox>
+        <Button x:Name="addBTN" Content="Добавить" 
+                HorizontalAlignment="Left" Margin="724,332,0,0" VerticalAlignment="Top" Width="75" Click="addBTN_Click"/>
+        <Button x:Name="editBTN" Content="Изменить" 
+                HorizontalAlignment="Left" Margin="813,332,0,0" VerticalAlignment="Top" Width="75" Click="editBTN_Click"/>
+        <Button x:Name="deleteBTN" Content="Удалить" 
+                HorizontalAlignment="Left" Margin="901,332,0,0" VerticalAlignment="Top" Width="75" Click="deleteBTN_Click"/>
+        
+        <Menu Margin="858,369,18,169">
+            <MenuItem Header="Другие таблицы">
+                <MenuItem Header="Базовые">
+                    <MenuItem Header="Должности" Click="ChoseMenuItem"/>
+                    <MenuItem Header="Тип доставки" Click="ChoseMenuItem"/>
+                    <MenuItem Header="Тип ТС" Click="ChoseMenuItem"/>
+                </MenuItem>
+                <MenuItem Header="Расширенные">
+                    <MenuItem Header="Полная Заявки" Click="ChoseMenuItem"/>
+                    <MenuItem Header="Полная Маршруты" Click="ChoseMenuItem"/>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
     </Grid>
 </Window>
